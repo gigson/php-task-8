@@ -10,4 +10,8 @@ class Tag extends Model
         'news_id',
         'name'
     ];
+
+    public function tags(){
+        return $this->belongsTo("App\News");
+    }
 }

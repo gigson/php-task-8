@@ -24,3 +24,5 @@ Route::post('/category/update', 'CategoryController@update')->name('updateCatego
 Route::post('/category/destroy', 'CategoryController@destroy')->name('destroyCategory');
 
 Route::post('/news/store', 'NewsController@store')->name('storeNews');
+Route::post('/news/update', 'NewsController@update')->name('updateNews');
+Route::post('/news/destroy', 'NewsController@destroy')->name('destroyNews');

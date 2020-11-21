@@ -102,9 +102,31 @@ class NewsController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        if (Input::file("image")) {
+            $dest = public_path("images");
+            $filename = uniqid() . ".jpg";
+            $img = Input::file("image")->move($dest, $filename);
+
+            News::where([
+                ["id", $request->input("id")],
+            ])->update([
+                "image" => $filename,
+            ]);
+        }
+
+        News::where([
+            ["id", $request->input("id")],
+        ])->update([
+            "title" => $request->input("title"),
+            "desc" => $request->input("desc"),
+            "short_desc" => $request->input("short-desc"),
+            "category_id" => $request->input("category"),
+            "published_time" => $request->input("published-time"),
+        ]);
+
+        return redirect()->route('home');
     }
 
     /**
@@ -113,8 +135,12 @@ class NewsController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        News::where([
+            ["id", $request->input("id")],
+        ])->delete();
+
+        return redirect()->route('home');
     }
 }

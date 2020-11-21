@@ -16,4 +16,7 @@ class News extends Model
         "category_id"
     ];
 
+    public function tags(){
+        return $this->hasMany("App\Tag");
+    }
 }
