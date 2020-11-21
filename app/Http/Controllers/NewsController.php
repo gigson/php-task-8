@@ -46,9 +46,9 @@ class NewsController extends Controller
         $this->validate($request, [
             "title" => "required",
             "desc" => "required",
-            "short_desc" => "required",
-            "category_id" => "required",
-            "published_time" => "required",
+            "short-desc" => "required",
+            "category" => "required",
+            "published-time" => "required",
             "image" => "required",
         ]);
 
