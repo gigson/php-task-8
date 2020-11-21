@@ -35,6 +35,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "title" => "required",
+        ]);
+
         Category::create([
             "title" => $request->input("title")
         ]);

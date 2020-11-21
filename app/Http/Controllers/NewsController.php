@@ -43,6 +43,15 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            "title" => "required",
+            "desc" => "required",
+            "short_desc" => "required",
+            "category_id" => "required",
+            "published_time" => "required",
+            "image" => "required",
+        ]);
+
         if (Input::file("image")) {
             $dest = public_path("images");
             $filename = uniqid() . ".jpg";

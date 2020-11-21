@@ -2,6 +2,20 @@
 
 @section('content')
 
+    <div class="container">
+        @if($errors->any())
+            <div>
+                <ul style="color: red">
+                    @foreach($errors->all() as $error)
+                        <li>
+                            {{$error}}
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
+
     {{-- Category --}}
     <div class="container">
         <h3>Add New Category</h3>
@@ -13,8 +27,8 @@
             <input type="submit" value="Add category">
         </form>
     </div>
-    <div class="container">
-        <h3>Categories</h3>
+    <div class="container" style="margin-bottom: 50px">
+        <h3>Categories:</h3>
         @foreach($categories as $category)
 
             <div>
@@ -74,7 +88,7 @@
         </form>
     </div>
     <div class="container">
-        <h3>News</h3>
+        <h3>News:</h3>
         @foreach($newsList as $news)
             <div style="margin-bottom: 50px">
                 <form action="{{ route('updateNews') }}" method="post" style="display:inline-block;"
@@ -107,11 +121,16 @@
                     </select><br>
 
                     <label>Tags:</label>
-                    <input type="text" name="tags[]" value="@isset($news->tags[0]->name){{$news->tags[0]->name}}@endisset">
-                    <input type="text" name="tags[]" value="@isset($news->tags[1]->name){{$news->tags[1]->name}}@endisset">
-                    <input type="text" name="tags[]" value="@isset($news->tags[2]->name){{$news->tags[2]->name}}@endisset">
-                    <input type="text" name="tags[]" value="@isset($news->tags[3]->name){{$news->tags[3]->name}}@endisset">
-                    <input type="text" name="tags[]" value="@isset($news->tags[4]->name){{$news->tags[4]->name}}@endisset"><br>
+                    <input type="text" name="tags[]"
+                           value="@isset($news->tags[0]->name){{$news->tags[0]->name}}@endisset">
+                    <input type="text" name="tags[]"
+                           value="@isset($news->tags[1]->name){{$news->tags[1]->name}}@endisset">
+                    <input type="text" name="tags[]"
+                           value="@isset($news->tags[2]->name){{$news->tags[2]->name}}@endisset">
+                    <input type="text" name="tags[]"
+                           value="@isset($news->tags[3]->name){{$news->tags[3]->name}}@endisset">
+                    <input type="text" name="tags[]"
+                           value="@isset($news->tags[4]->name){{$news->tags[4]->name}}@endisset"><br>
 
                     <input type="text" id="id" name="id" value="{{$news->id}}" hidden>
                     <input type="submit" value="Update">
