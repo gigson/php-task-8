@@ -135,6 +135,20 @@ class NewsController extends Controller
             "published_time" => $request->input("published-time"),
         ]);
 
+        Tag::where([
+            ["news_id", $request->input("id")]
+        ])->delete();
+
+        foreach ($request->input("tags") as $tag) {
+            if ($tag == null) {
+                continue;
+            }
+            Tag::create([
+                "news_id" => $request->input("id"),
+                "name" => $tag
+            ]);
+        }
+
         return redirect()->route('home');
     }
 
